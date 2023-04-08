@@ -12,13 +12,13 @@ const cards = [
     heading:"Noteworthy technology acquisitions 2021",
     description: "Here are the biggest enterprise technology acquisitions of 2021 in reverse chronological order.",
     img: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80',
-    id: 'gynaecology'
+    id: 'gynaecology1'
   },
   {
     heading:"Noteworthy technology acquisitions 2021",
     description: "Here are the biggest enterprise technology acquisitions of 2021 in reverse chronological order.",
     img: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80',
-    id: 'gynaecology'
+    id: 'gynaecology2'
   }
 ]
 const Cards = () => {
@@ -28,7 +28,7 @@ const Cards = () => {
         Consult any doctor you wish
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-       {cards.map((n)=><div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+       {cards.map((n)=><div key={n.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
           <img
             className="rounded-t-lg w-full aspect-square object-cover"
             src={n.img}
