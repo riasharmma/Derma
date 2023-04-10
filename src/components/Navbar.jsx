@@ -1,11 +1,11 @@
-import { Fragment, useState, useContext, createContext } from "react";
+import { Fragment, useState, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import LoginSignupModal from "./LoginSignupModal";
 import { ProfileContext } from "../contexts/ProfileContextProvider";
-
+import backendAuthService from "../firebase/auth";
 
 const navigation = [
   { name: "Find Doctor", href: "find", current: false },
@@ -19,7 +19,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
-  const {userValue } =  useContext(ProfileContext)
+  const { userValue, setUserValue } = useContext(ProfileContext);
 
   console.log(userValue);
   function closeModal() {
@@ -27,10 +27,18 @@ export default function Navbar() {
   }
 
   function openModal() {
-    console.log("pom");
     setIsOpen(true);
   }
-  console.log(userValue)
+
+  const handleSignOut = async() => {
+    try {    
+      await backendAuthService.userSignOut();
+      setUserValue(null)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   return (
     <Disclosure as="nav" className="bg-blue-200">
       {({ open }) => (
@@ -70,8 +78,12 @@ export default function Navbar() {
                         key={item.name}
                         to={item.href}
                         className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "bg-gray-900 text-white  rounded-md px-3 py-2 text-sm font-medium" : "text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                      }
+                          isPending
+                            ? "pending"
+                            : isActive
+                            ? "bg-gray-900 text-white  rounded-md px-3 py-2 text-sm font-medium"
+                            : "text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                        }
                       >
                         {item.name}
                       </NavLink>
@@ -110,35 +122,34 @@ export default function Navbar() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <button
-                            type="button"
-                            onClick={openModal}
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Log In
-                          </button>
-                        )}
-                      </Menu.Item>
+                      {userValue ? (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              type="button"
+                              onClick={handleSignOut}
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >SignOut</button>
+                          )}
+                        </Menu.Item>
+                      ) : (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              type="button"
+                              onClick={openModal}
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >Sign in</button>
+                          )}
+                        </Menu.Item>
+                      )}
 
-                      <Menu.Item>
-                        {({ active }) => (
-                          <button
-                            type="button"
-                            onClick={openModal}
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Sign In
-                          </button>
-                        )}
-                      </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <a
@@ -156,7 +167,11 @@ export default function Navbar() {
                   </Transition>
                 </Menu>
                 {/* ModalsLoad */}
-                <LoginSignupModal isOpen={isOpen} Fragment={Fragment} closeModal={closeModal} />
+                <LoginSignupModal
+                  isOpen={isOpen}
+                  Fragment={Fragment}
+                  closeModal={closeModal}
+                />
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { app } from "./firebase";
-import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, connectAuthEmulator, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, connectAuthEmulator, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
 const auth = getAuth(app);
 
@@ -7,7 +7,6 @@ const actionCodeSettings = {
   url: 'http://localhost:5173/',
   handleCodeInApp: true,
 };
-
 
 const emailLinkSignup = async(email) => 
 {
@@ -21,7 +20,8 @@ const emailLinkSignup = async(email) =>
  } 
 }
 
-const emailLinkUser = () =>{
+// fetching user after he clicks the link from email
+const emailLinkGetUser = () =>{
   if (isSignInWithEmailLink(auth, window.location.href)) {
     let email = window.localStorage.getItem('emailForSignIn');
     if (!email) {
@@ -38,7 +38,6 @@ const emailLinkUser = () =>{
   }
 }
 
-
 const signInWithGoogle = async() => {
   try {
     const provider = new GoogleAuthProvider();
@@ -48,9 +47,10 @@ const signInWithGoogle = async() => {
   }
 }
 
-const signOut = async() => {
+const userSignOut = async() => {
   try {
     await signOut(auth)
+    console.log('happened');
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -60,4 +60,4 @@ const signOut = async() => {
 
 connectAuthEmulator(auth, "http://localhost:9099");
 
-export default { emailLinkSignup, auth, emailLinkUser, signInWithGoogle, signOut }
+export default { emailLinkSignup, auth, emailLinkGetUser, signInWithGoogle, userSignOut }
