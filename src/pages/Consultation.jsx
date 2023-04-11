@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+import ConsultationForm from '../components/Consultation/ConsultationForm'
 
 export const Consultation = () => {
   return (
-		<div>Asfagdas</div>
+		<div><ConsultationForm/></div>
   )
 }
