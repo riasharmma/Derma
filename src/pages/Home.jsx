@@ -21,7 +21,7 @@ export const Home = () => {
         <>
           <Carousel />
           <Cards />
-          <Appointment />
+          {/* <Appointment /> */}
           <Footer />
         </>
       ) : (

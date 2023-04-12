@@ -15,13 +15,13 @@ const LoginSignupModal = ({ isOpen, Fragment, closeModal }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (userValue) {
       navigate("/");
     } else {
       backendAuthService.emailLinkGetUser();
     }
-  }, [user]);
-
+  }, [userValue]);
+   
   const handleLogin = async () => {
     try {
       await backendAuthService.emailLinkSignup(email);

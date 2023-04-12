@@ -14,3 +14,9 @@ export const medicalDepartment = [
 	{value:'Gastroentrology',label:'Gastroentrology'},
 	{value:'Pulmology',label:'Pulmology'},
 ];
+
+export const medicalDoctors = [
+	{value:'Dr. Shabana Azmi',label:'Dr. Shabana Azmi'},
+	{value:'Dr. Rajat Prasad',label:'Dr. Rajat Prasad'},
+	{value:'Dr. Riya Chourasia',label:'Dr. Riya Chourasia'}
+];

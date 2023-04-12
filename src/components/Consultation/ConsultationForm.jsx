@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import Select from "react-select";
-import { timeSlots, medicalDepartment } from "../../../data";
+import { timeSlots, medicalDepartment, medicalDoctors } from "../../../data";
+import Summary from "./Summary";
 
 const ConsultationForm = () => {
-//   const filterTime = (inputValue) => {
-//     console.log(inputValue);
-//     return timeSlots.filter((i) =>  i.value.includes(inputValue));
-//   };
+  const [patient, setPatient] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [department, setDepartment] = useState(null);
+  const [slot, setSlot] = useState(null);
+  const [doctor, setDoctor] = useState(null);
+  const [formFilled,setFormFilled] = useState(false)
+  const [message, setMessage] = useState(null);
 
-//   const loadOptions = (inputValue, callback) => {
-//     setTimeout(() => {
-//       callback(filterTime(inputValue));
-//     }, 1000);
-//   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("happening");
+    if(!patient || !phone || !email || !department || !slot || !doctor){
+      setMessage('Kindly fill all the fields')
+      setTimeout(()=>setMessage(null),3000)
+      return  
+    }
+    setFormFilled(true)
+  };
 
   return (
     <div>
-      <section className="bg-gray-100">
+      {formFilled ? <Summary patient={patient} phone={phone} email={email} department={department} slot={slot} doctor={doctor}/> :<section className="bg-gray-100">
         <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
             <div className="lg:col-span-2 lg:py-12">
@@ -39,16 +49,18 @@ const ConsultationForm = () => {
             </div>
 
             <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-              <form action="" className="space-y-4">
+              {message}
+              <form action="" className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label className="sr-only" htmlFor="name">
                     Name
                   </label>
                   <input
                     className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                    placeholder="Name"
+                    placeholder="Patient Name"
                     type="text"
                     id="name"
+                    onChange={(e) => setPatient(e.target.value)}
                   />
                 </div>
 
@@ -62,6 +74,7 @@ const ConsultationForm = () => {
                       placeholder="Email address"
                       type="email"
                       id="email"
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
@@ -74,78 +87,80 @@ const ConsultationForm = () => {
                       placeholder="Phone Number"
                       type="tel"
                       id="phone"
+                      onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
                 </div>
 
                 <div>
-				<Select
-				  className="w-full rounded-lg border-gray-200 py-2s text-sm"
+                  <Select
+                    className="w-full rounded-lg border-gray-200 py-2s text-sm"
                     options={medicalDepartment}
-					placeholder="Department"
-					theme={(theme) => ({
-						...theme,
-						borderRadius: '0.5rem',
-						padding:'0.75rem',
-						colors: {
-						  ...theme.colors,
-						  primary25: '#e5e7eb',
-						  primary50: '#9ca3af',
-						  primary: 'black',
-						},
-					  })}
+                    placeholder="Department"
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: "0.5rem",
+                      padding: "0.75rem",
+                      colors: {
+                        ...theme.colors,
+                        primary25: "#e5e7eb",
+                        primary50: "#9ca3af",
+                        primary: "black",
+                      },
+                    })}
+                    onChange={(data) => setDepartment(data.value)}
                   />
                   <Select
-				  className="w-full rounded-lg border-gray-200 py-2 text-sm"
+                    className="w-full rounded-lg border-gray-200 py-2 text-sm"
                     options={timeSlots}
-					placeholder="Time Slots"
-					theme={(theme) => ({
-						...theme,
-						borderRadius: '0.5rem',
-						padding:'0.75rem',
-						colors: {
-						  ...theme.colors,
-						  primary25: '#e5e7eb',
-						  primary50: '#9ca3af',
-						  primary: 'black',
-						},
-					  })}
+                    placeholder="Time Slots"
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: "0.5rem",
+                      padding: "0.75rem",
+                      colors: {
+                        ...theme.colors,
+                        primary25: "#e5e7eb",
+                        primary50: "#9ca3af",
+                        primary: "black",
+                      },
+                    })}
+                    onChange={(data) => setSlot(data.value)}
                   />
-				   <Select
-				  className="w-full rounded-lg border-gray-200 py-2 text-sm"
-                    options={timeSlots}
-					placeholder="Time Slots"
-					theme={(theme) => ({
-						...theme,
-						borderRadius: '0.5rem',
-						padding:'0.75rem',
-						colors: {
-						  ...theme.colors,
-						  primary25: '#e5e7eb',
-						  primary50: '#9ca3af',
-						  primary: 'black',
-						},
-					  })}
+                  <Select
+                    className="w-full rounded-lg border-gray-200 py-2 text-sm"
+                    options={medicalDoctors}
+                    placeholder="Available Doctors"
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: "0.5rem",
+                      padding: "0.75rem",
+                      colors: {
+                        ...theme.colors,
+                        primary25: "#e5e7eb",
+                        primary50: "#9ca3af",
+                        primary: "black",
+                      },
+                    })}
+                    onChange={(data) => setDoctor(data.value)}
                   />
                 </div>
 
-                <div>
-                
-                </div>
+                <div></div>
 
                 <div className="mt-4">
                   <button
                     type="submit"
                     className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
                   >
-                    Book Appointment
+                    Book Appointments
                   </button>
                 </div>
               </form>
             </div>
           </div>
         </div>
-      </section>
+      </section> }
     </div>
   );
 };

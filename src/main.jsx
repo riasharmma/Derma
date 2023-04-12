@@ -10,7 +10,7 @@ import { Medicine } from "./pages/Medicine";
 import { Consultation } from "./pages/Consultation";
 import { FindDoctor } from "./pages/FindDoctor";
 import  ErrorPage  from "./pages/ErrorPage";
-
+import Summary from "./components/Consultation/Summary";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +30,10 @@ const router = createBrowserRouter([
         path: "/find",
         element: <FindDoctor />,
       },
+      {
+        path: '/consultation/summary',
+        element: <Summary />
+      }
     ]
   },
 
