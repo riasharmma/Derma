@@ -4,8 +4,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import LoginSignupModal from "./LoginSignupModal";
-import { ProfileContext } from "../contexts/ProfileContextProvider";
 import backendAuthService from "../firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const navigation = [
   { name: "Find Doctor", href: "find", current: false },
@@ -19,9 +19,9 @@ function classNames(...classes) {
 
 export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
-  const { userValue, setUserValue } = useContext(ProfileContext);
+const [user] =  useAuthState(backendAuthService.auth) 
 
-  console.log(userValue);
+  console.log(user);
   function closeModal() {
     setIsOpen(false);
   }
@@ -122,7 +122,7 @@ export default function Navbar() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {userValue ? (
+                      {user ? (
                         <Menu.Item>
                           {({ active }) => (
                             <button

@@ -1,8 +1,11 @@
-import React,{useContext} from "react";
-import { FormDataContext } from "../../contexts/FormDataContext";
+import React from "react";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import backendAuthService from '../../firebase/auth'
 
 const Summary = ({patient, phone, email, department, doctor, slot}) => {
-
+  const [user] = useAuthState(backendAuthService.auth);
+  
   const handleConfirm = () =>{
     console.log('confirm');
   }

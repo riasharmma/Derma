@@ -1,26 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import backendAuthService from "../firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { ProfileContext } from "../contexts/ProfileContextProvider";
 
 const LoginSignupModal = ({ isOpen, Fragment, closeModal }) => {
-  const { userValue, setUserValue } = useContext(ProfileContext);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
-  const [loader, setLoader] = useState(null);
-  const [user, loading] = useAuthState(backendAuthService.auth);
+  const [user] = useAuthState(backendAuthService.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userValue) {
+    if (user) {
       navigate("/");
     } else {
       backendAuthService.emailLinkGetUser();
     }
-  }, [userValue]);
+  }, [user]);
    
   const handleLogin = async () => {
     try {
@@ -35,7 +32,6 @@ const LoginSignupModal = ({ isOpen, Fragment, closeModal }) => {
   const handleGoogleLogin = async (event) => {
     try {
       await backendAuthService.signInWithGoogle();
-      setUserValue(user);
     } catch (error) {
       console.log(error);
     }
@@ -45,6 +41,9 @@ const LoginSignupModal = ({ isOpen, Fragment, closeModal }) => {
     console.log(event.target.value);
     setEmail(event.target.value);
   };
+
+  console.log(user)
+  if(user){ return null}
 
   return (
     <div>
