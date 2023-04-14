@@ -5,58 +5,58 @@ import backendAuthService from '../../firebase/auth'
 
 const Summary = ({patient, phone, email, department, doctor, slot}) => {
   const [user] = useAuthState(backendAuthService.auth);
-  
+
   const handleConfirm = () =>{
     console.log('confirm');
   }
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="grid sm:px-10 lg:grid-cols-2 lg:px-8 xl:px-12">
-        <div class="px-4 pt-8">
-          <p class="text-xl font-medium">Appointment Summary</p>
-          <p class="text-gray-400">
+      <div className="grid sm:px-10 lg:grid-cols-2 lg:px-8 xl:px-12">
+        <div className="px-4 pt-8">
+          <p className="text-xl font-medium">Appointment Summary</p>
+          <p className="text-gray-400">
             Check your items details!
           </p>
-          <div class="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
-            <div class="flex flex-col rounded-lg bg-white sm:flex-row">
+          <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
+            <div className="flex flex-col rounded-lg bg-white sm:flex-row">
               <img
-                class="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                className="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                 alt=""
               />
-              <div class="flex w-full flex-col px-4 py-4">
-                <span class="font-semibold">
+              <div className="flex w-full flex-col px-4 py-4">
+                <span className="font-semibold">
                  Patient: {patient} <br />
                   Consulting Department: {department}
                 </span>
-                <span class="float-right text-gray-400">{doctor} ,{slot}</span>
-                <p class="text-lg font-bold">₹399</p>
+                <span className="float-right text-gray-400">{doctor} ,{slot}</span>
+                <p className="text-lg font-bold">₹399</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
-          <p class="text-xl font-medium">Payment Details</p>
-          <p class="text-gray-400">
+        <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+          <p className="text-xl font-medium">Payment Details</p>
+          <p className="text-gray-400">
             Complete your order by providing your payment details.
           </p>
-          <div class="">
-            <label for="email" class="mt-4 mb-2 block text-sm font-medium">
+          <div className="">
+            <label for="email" className="mt-4 mb-2 block text-sm font-medium">
               Email
             </label>
-            <div class="relative">
+            <div className="relative">
               <input
               value={email}
                 type="text"
                 id="email"
                 name="email"
-                class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="your.email@gmail.com"
               />
-              <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+              <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-4 w-4 text-gray-400"
+                  className="h-4 w-4 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -72,22 +72,22 @@ const Summary = ({patient, phone, email, department, doctor, slot}) => {
             </div>
             <label
               for="card-holder"
-              class="mt-4 mb-2 block text-sm font-medium"
+              className="mt-4 mb-2 block text-sm font-medium"
             >
               Card Holder
             </label>
-            <div class="relative">
+            <div className="relative">
               <input
                 type="text"
                 id="card-holder"
                 name="card-holder"
-                class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Your full name here"
               />
-              <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+              <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-4 w-4 text-gray-400"
+                  className="h-4 w-4 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -101,21 +101,21 @@ const Summary = ({patient, phone, email, department, doctor, slot}) => {
                 </svg>
               </div>
             </div>
-            <label for="card-no" class="mt-4 mb-2 block text-sm font-medium">
+            <label for="card-no" className="mt-4 mb-2 block text-sm font-medium">
               Card Details
             </label>
-            <div class="flex">
-              <div class="relative w-7/12 flex-shrink-0">
+            <div className="flex">
+              <div className="relative w-7/12 flex-shrink-0">
                 <input
                   type="text"
                   id="card-no"
                   name="card-no"
-                  class="w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                  className="w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                   placeholder="xxxx-xxxx-xxxx-xxxx"
                 />
-                <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
                   <svg
-                    class="h-4 w-4 text-gray-400"
+                    className="h-4 w-4 text-gray-400"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
@@ -130,34 +130,34 @@ const Summary = ({patient, phone, email, department, doctor, slot}) => {
               <input
                 type="text"
                 name="credit-expiry"
-                class="w-full rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                className="w-full rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="MM/YY"
               />
               <input
                 type="text"
                 name="credit-cvc"
-                class="w-1/6 flex-shrink-0 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                className="w-1/6 flex-shrink-0 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="CVC"
               />
             </div>
             <label
               for="billing-address"
-              class="mt-4 mb-2 block text-sm font-medium"
+              className="mt-4 mb-2 block text-sm font-medium"
             >
               Billing Address
             </label>
-            <div class="flex flex-col sm:flex-row">
-              <div class="relative flex-shrink-0 sm:w-7/12">
+            <div className="flex flex-col sm:flex-row">
+              <div className="relative flex-shrink-0 sm:w-7/12">
                 <input
                   type="text"
                   id="billing-address"
                   name="billing-address"
-                  class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                  className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                   placeholder="Street Address"
                 />
-                <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
                   <img
-                    class="h-4 w-4 object-contain"
+                    className="h-4 w-4 object-contain"
                     src="https://flagpack.xyz/_nuxt/4c829b6c0131de7162790d2f897a90fd.svg"
                     alt=""
                   />
@@ -166,34 +166,34 @@ const Summary = ({patient, phone, email, department, doctor, slot}) => {
               <select
                 type="text"
                 name="billing-state"
-                class="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               >
                 <option value="State">State</option>
               </select>
               <input
                 type="text"
                 name="billing-zip"
-                class="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="ZIP"
               />
             </div>
 
-            <div class="mt-6 border-t border-b py-2">
-              <div class="flex items-center justify-between">
-                <p class="text-sm font-medium text-gray-900">Subtotal</p>
-                <p class="font-semibold text-gray-900">̥₹400</p>
+            <div className="mt-6 border-t border-b py-2">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium text-gray-900">Subtotal</p>
+                <p className="font-semibold text-gray-900">̥₹400</p>
               </div>
-              <div class="flex items-center justify-between">
-                <p class="text-sm font-medium text-gray-900">Discount</p>
-                <p class="font-semibold text-gray-900">̥₹400</p>
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium text-gray-900">Discount</p>
+                <p className="font-semibold text-gray-900">̥₹400</p>
               </div>
             </div>
-            <div class="mt-6 flex items-center justify-between">
-              <p class="text-sm font-medium text-gray-900">Total</p>
-              <p class="text-2xl font-semibold text-gray-900">₹000</p>
+            <div className="mt-6 flex items-center justify-between">
+              <p className="text-sm font-medium text-gray-900">Total</p>
+              <p className="text-2xl font-semibold text-gray-900">₹000</p>
             </div>
           </div>
-          <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" onClick={handleConfirm}>
+          <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" onClick={handleConfirm}>
             Place Order
           </button>
         </div>

@@ -33,7 +33,6 @@ const [user] =  useAuthState(backendAuthService.auth)
   const handleSignOut = async() => {
     try {    
       await backendAuthService.userSignOut();
-      setUserValue(null)
     } catch (error) {
       console.log(error)
     }

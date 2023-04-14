@@ -17,12 +17,11 @@ const LoginSignupModal = ({ isOpen, Fragment, closeModal }) => {
     } else {
       backendAuthService.emailLinkGetUser();
     }
-  }, [user]);
+  }, []);
    
   const handleLogin = async () => {
     try {
       await backendAuthService.emailLinkSignup(email);
-      setUserValue(user);
       setMessage("A verification link has been sent to your email.");
     } catch (error) {
       console.log(error);
