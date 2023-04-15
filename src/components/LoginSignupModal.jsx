@@ -18,7 +18,7 @@ const LoginSignupModal = ({ isOpen, Fragment, closeModal }) => {
       backendAuthService.emailLinkGetUser();
     }
   }, []);
-   
+
   const handleLogin = async () => {
     try {
       await backendAuthService.emailLinkSignup(email);
@@ -37,12 +37,12 @@ const LoginSignupModal = ({ isOpen, Fragment, closeModal }) => {
   };
 
   const handleEmail = (event) => {
-    console.log(event.target.value);
     setEmail(event.target.value);
   };
 
-  console.log(user)
-  if(user){ return null}
+  if (user) {
+    return null;
+  }
 
   return (
     <div>
