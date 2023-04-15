@@ -83,7 +83,7 @@ const userSignOut = async () => {
   }
 };
 
-connectAuthEmulator(auth, "http://localhost:9099");
+// connectAuthEmulator(auth, "http://localhost:9099");
 
 export default {
   emailLinkSignup,

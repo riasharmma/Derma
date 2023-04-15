@@ -1,38 +1,36 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import backendAuthService from '../../firebase/auth'
-import backendFirestoreService from '../../firebase/firestore'
-import { Dialog, Transition } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom';
+import backendAuthService from "../../firebase/auth";
+import backendFirestoreService from "../../firebase/firestore";
+import { Dialog, Transition } from "@headlessui/react";
+import { useNavigate } from "react-router-dom";
 
-const Summary = ({patient, phone, email, department, doctor, slot}) => {
+const Summary = ({ patient, phone, email, department, doctor, slot }) => {
   const [user] = useAuthState(backendAuthService.auth);
-  let [isOpen, setIsOpen] = useState(false)
-const navigate = useNavigate()
+  let [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   function closeModal() {
-    setIsOpen(false)
-    navigate('/')
-  }
-  
-  function openModal() {
-    setIsOpen(true)
+    setIsOpen(false);
+    navigate("/");
   }
 
-  const handleConfirm = () =>{
-    const data = {patient, phone, email, department, doctor, slot}
-    backendFirestoreService.addAppointment(user.uid, {...data})
-    openModal()
+  function openModal() {
+    setIsOpen(true);
   }
+
+  const handleConfirm = () => {
+    const data = { patient, phone, email, department, doctor, slot };
+    backendFirestoreService.addAppointment(user.uid, { ...data });
+    openModal();
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-8 xl:px-12">
         <div className="px-4 pt-8">
           <p className="text-xl font-medium">Appointment Summary</p>
-          <p className="text-gray-400">
-            Check your items details!
-          </p>
+          <p className="text-gray-400">Check your items details!</p>
           <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
             <div className="flex flex-col rounded-lg bg-white sm:flex-row">
               <img
@@ -42,10 +40,12 @@ const navigate = useNavigate()
               />
               <div className="flex w-full flex-col px-4 py-4">
                 <span className="font-semibold">
-                 Patient: {patient} <br />
+                  Patient: {patient} <br />
                   Consulting Department: {department}
                 </span>
-                <span className="float-right text-gray-400">{doctor} ,{slot}</span>
+                <span className="float-right text-gray-400">
+                  {doctor} ,{slot}
+                </span>
                 <p className="text-lg font-bold">₹399</p>
               </div>
             </div>
@@ -57,12 +57,15 @@ const navigate = useNavigate()
             Complete your order by providing your payment details.
           </p>
           <div className="">
-            <label htmlFor="email" className="mt-4 mb-2 block text-sm font-medium">
+            <label
+              htmlFor="email"
+              className="mt-4 mb-2 block text-sm font-medium"
+            >
               Email
             </label>
             <div className="relative">
               <input
-              defaultValue={email}
+                defaultValue={email}
                 type="text"
                 id="email"
                 name="email"
@@ -117,7 +120,10 @@ const navigate = useNavigate()
                 </svg>
               </div>
             </div>
-            <label htmlFor="card-no" className="mt-4 mb-2 block text-sm font-medium">
+            <label
+              htmlFor="card-no"
+              className="mt-4 mb-2 block text-sm font-medium"
+            >
               Card Details
             </label>
             <div className="flex">
@@ -209,24 +215,29 @@ const navigate = useNavigate()
               <p className="text-2xl font-semibold text-gray-900">₹000</p>
             </div>
           </div>
-          <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" onClick={handleConfirm}>
+          <button
+            className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
+            onClick={handleConfirm}
+          >
             Place Order
           </button>
         </div>
       </div>
-          <MyModal isOpen={isOpen} setIsOpen={setIsOpen} openModal={openModal} closeModal={closeModal}/>
+      <MyModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+      />
     </div>
   );
 };
 
 export default Summary;
 
-
-export function MyModal({isOpen, closeModal}) {
-
+export function MyModal({ isOpen, closeModal }) {
   return (
     <>
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -261,7 +272,8 @@ export function MyModal({isOpen, closeModal}) {
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. You can see your appointment in the Profile page.
+                      Your payment has been successfully submitted. You can see
+                      your appointment in the Profile page.
                     </p>
                   </div>
 
@@ -281,5 +293,5 @@ export function MyModal({isOpen, closeModal}) {
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }
