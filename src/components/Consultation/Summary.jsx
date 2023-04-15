@@ -1,13 +1,16 @@
 import React from "react";
-
 import { useAuthState } from "react-firebase-hooks/auth";
 import backendAuthService from '../../firebase/auth'
+import backendFirestoreService from '../../firebase/firestore'
 
 const Summary = ({patient, phone, email, department, doctor, slot}) => {
   const [user] = useAuthState(backendAuthService.auth);
 
   const handleConfirm = () =>{
-    console.log('confirm');
+    const data = {patient, phone, email, department, doctor, slot}
+    console.log({...data});
+    console.log(user);
+    backendFirestoreService.addAppointment(user.uid, {...data})
   }
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -41,12 +44,12 @@ const Summary = ({patient, phone, email, department, doctor, slot}) => {
             Complete your order by providing your payment details.
           </p>
           <div className="">
-            <label for="email" className="mt-4 mb-2 block text-sm font-medium">
+            <label htmlFor="email" className="mt-4 mb-2 block text-sm font-medium">
               Email
             </label>
             <div className="relative">
               <input
-              value={email}
+              defaultValue={email}
                 type="text"
                 id="email"
                 name="email"
@@ -60,18 +63,18 @@ const Summary = ({patient, phone, email, department, doctor, slot}) => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
                   />
                 </svg>
               </div>
             </div>
             <label
-              for="card-holder"
+              htmlFor="card-holder"
               className="mt-4 mb-2 block text-sm font-medium"
             >
               Card Holder
@@ -91,17 +94,17 @@ const Summary = ({patient, phone, email, department, doctor, slot}) => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
                   />
                 </svg>
               </div>
             </div>
-            <label for="card-no" className="mt-4 mb-2 block text-sm font-medium">
+            <label htmlFor="card-no" className="mt-4 mb-2 block text-sm font-medium">
               Card Details
             </label>
             <div className="flex">
@@ -141,7 +144,7 @@ const Summary = ({patient, phone, email, department, doctor, slot}) => {
               />
             </div>
             <label
-              for="billing-address"
+              htmlFor="billing-address"
               className="mt-4 mb-2 block text-sm font-medium"
             >
               Billing Address

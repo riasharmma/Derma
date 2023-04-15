@@ -1,5 +1,5 @@
-import React,{useContext} from 'react'
-import ConsultationForm from '../components/Consultation/ConsultationForm'
+import React from 'react'
+import ConsultationForm from '../components/Consultation/ConsultationForm.jsx'
 export const Consultation = () => {
 
   return (

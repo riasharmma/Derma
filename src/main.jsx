@@ -9,6 +9,7 @@ import { Home } from "./pages/Home";
 import { Medicine } from "./pages/Medicine";
 import { Consultation } from "./pages/Consultation";
 import { FindDoctor } from "./pages/FindDoctor";
+import { Profile } from "./pages/Profile";
 import  ErrorPage  from "./pages/ErrorPage";
 import Summary from "./components/Consultation/Summary";
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/consultation/summary',
         element: <Summary />
+      },
+      {
+        path: '/profile',
+        element: <Profile />
       }
     ]
   },

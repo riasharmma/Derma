@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import Select from "react-select";
 import { timeSlots, medicalDepartment, medicalDoctors } from "../../../data";
-import Summary from "./Summary";
+import Summary from "./Summary.jsx";
 
 const ConsultationForm = () => {
   const [patient, setPatient] = useState(null);
