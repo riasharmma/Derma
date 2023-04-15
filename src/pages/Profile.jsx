@@ -2,27 +2,21 @@ import React from "react";
 import { collection, query } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import backendAuthService from "../firebase/auth";
-import backendFireStoreService from "../firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../firebase/firestore";
-import { app } from "../firebase/firebase";
 
 export const Profile = () => {
   const [user] = useAuthState(backendAuthService.auth);
-  // console.log(collection(db, 'users'));
   const [data, loading, error] = useCollection(
     query(collection(db, `users/${user?.uid}/appointment`)),
     {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
   );
-  // console.warn(db);
-  console.log(data?.docs.map((n) => console.log(n.data())));
+  
   if (!user) {
     return null;
   }
-
-  // console.log(snapshot);
 
   return (
     <div>

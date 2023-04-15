@@ -12,6 +12,10 @@ import { FindDoctor } from "./pages/FindDoctor";
 import { Profile } from "./pages/Profile";
 import  ErrorPage  from "./pages/ErrorPage";
 import Summary from "./components/Consultation/Summary";
+import VideoPage from "./pages/VideoPage";
+import global from 'global'
+import * as process from "process";
+global.process = process;
 
 const router = createBrowserRouter([
   {
@@ -38,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />
+      },
+      {
+        path: '/Video',
+        element: <VideoPage />
       }
     ]
   },
