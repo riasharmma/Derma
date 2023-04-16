@@ -1,3 +1,4 @@
+
 import { Fragment, useState, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -8,9 +9,12 @@ import backendAuthService from "../firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const navigation = [
-  { name: "Find Doctor", href: "find", current: false },
-  { name: "Video Consultation", href: "consultation", current: false },
-  { name: "Medicine", href: "https://medicinegfg.netlify.app/", current: false },
+  {
+    name: "Video Consultation",
+    href: "consultation",
+    current: false,
+    external: false,
+  },
 ];
 
 function classNames(...classes) {
@@ -19,9 +23,9 @@ function classNames(...classes) {
 
 export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
-const [user] =  useAuthState(backendAuthService.auth) 
+  const [user] = useAuthState(backendAuthService.auth);
 
-  //console.log(user);
+  console.log(user);
   function closeModal() {
     setIsOpen(false);
   }
@@ -30,11 +34,11 @@ const [user] =  useAuthState(backendAuthService.auth)
     setIsOpen(true);
   }
 
-  const handleSignOut = async() => {
-    try {    
+  const handleSignOut = async () => {
+    try {
       await backendAuthService.userSignOut();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -72,21 +76,34 @@ const [user] =  useAuthState(backendAuthService.auth)
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
+                    <a
+                      href="https://example.com/"
+                      className="text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    >
+                      Find Doctors
+                    </a>
                     {navigation.map((item) => (
                       <NavLink
                         key={item.name}
-                        to={item.href}
+                        to={{ pathname: item.href }}
+                        target="_blank"
                         className={({ isActive, isPending }) =>
                           isPending
                             ? "pending"
                             : isActive
-                            ? "bg-gray-900 text-white  rounded-md px-3 py-2 text-sm font-medium"
-                            : "text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                              ? "bg-gray-900 text-white  rounded-md px-3 py-2 text-sm font-medium"
+                              : "text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                         }
                       >
                         {item.name}
                       </NavLink>
                     ))}
+                    <a
+                      href="https://medicinegfg.netlify.app/"
+                      className="text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    >
+                      Medicine
+                    </a>
                   </div>
                 </div>
               </div>
@@ -120,22 +137,22 @@ const [user] =  useAuthState(backendAuthService.auth)
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                  
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    {user && <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to="/profile"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Profile
-                          </Link>
-                        )}
+                      {user && (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              to="/profile"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Profile
+                            </Link>
+                          )}
                         </Menu.Item>
-                    }  
+                      )}
                       {user ? (
                         <Menu.Item>
                           {({ active }) => (
@@ -146,7 +163,9 @@ const [user] =  useAuthState(backendAuthService.auth)
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
-                            >SignOut</button>
+                            >
+                              SignOut
+                            </button>
                           )}
                         </Menu.Item>
                       ) : (
@@ -159,7 +178,9 @@ const [user] =  useAuthState(backendAuthService.auth)
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
-                            >Sign in</button>
+                              >
+                                Sign in
+                              </button>
                           )}
                         </Menu.Item>
                       )}
@@ -177,7 +198,6 @@ const [user] =  useAuthState(backendAuthService.auth)
                           </a>
                         )}
                       </Menu.Item>
-
                     </Menu.Items>
                   </Transition>
                 </Menu>
@@ -193,15 +213,18 @@ const [user] =  useAuthState(backendAuthService.auth)
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
+              <a
+                href="https://example.com/"
+                className="text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >
+                Find Doctor
+              </a>
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-indigo-950 hover:bg-gray-700 hover:text-white",
                     "block rounded-md px-3 py-2 text-base font-medium"
                   )}
                   aria-current={item.current ? "page" : undefined}
@@ -209,6 +232,12 @@ const [user] =  useAuthState(backendAuthService.auth)
                   {item.name}
                 </Disclosure.Button>
               ))}
+              <a
+                href="https://medicinegfg.netlify.app/"
+                className="text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >
+                Medicine
+              </a>
             </div>
           </Disclosure.Panel>
         </>

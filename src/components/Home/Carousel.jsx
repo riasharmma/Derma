@@ -9,17 +9,57 @@ export const images = [
   {
     title: "San Diego",
     subtitle: "This is San Diego",
-    img: "https://i.imgur.com/OJ1YMNV.png",
+    img: "https://i.imgur.com/RDkkouZ.jpg",
   },
 {
     title: "San Montina",
     subtitle: "This is San Montina",
-    img: "https://images.unsplash.com/photo-1561828995-aa79a2db86dd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+    img: "https://i.imgur.com/GE3Jc2P.jpg",
   },
   {
     title: "Reve",
     subtitle: "Roxxx",
-    img: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80",
+    img: "https://i.imgur.com/Ksg5Imb.jpg",
+  },
+  {
+    title: "Reve",
+    subtitle: "Roxxx",
+    img: "https://i.imgur.com/4nk9X77.jpg",
+  },
+  {
+    title: "Reve",
+    subtitle: "Roxxx",
+    img: "https://i.imgur.com/tE4PRRF.jpg",
+  },
+  {
+    title: "Reve",
+    subtitle: "Roxxx",
+    img: "https://i.imgur.com/YbhTYsR.jpg",
+  },
+  {
+    title: "Reve",
+    subtitle: "Roxxx",
+    img: "https://i.imgur.com/IBjgIX8.jpg",
+  },
+  {
+    title: "Reve",
+    subtitle: "Roxxx",
+    img: "https://i.imgur.com/DinkW9R.jpg",
+  },
+  {
+    title: "Reve",
+    subtitle: "Roxxx",
+    img: "https://i.imgur.com/ipBrjJ2.jpg",
+  },
+  {
+    title: "Reve",
+    subtitle: "Roxxx",
+    img: "https://i.imgur.com/FMsNsIc.jpg",
+  },
+  {
+    title: "Reve",
+    subtitle: "Roxxx",
+    img: "https://i.imgur.com/h4EXzUl.jpg",
   },
 ];
 

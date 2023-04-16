@@ -14,6 +14,7 @@ import  ErrorPage  from "./pages/ErrorPage";
 import Summary from "./components/Consultation/Summary";
 import VideoPage from "./pages/VideoPage";
 import global from 'global'
+import { Privacypolicy } from "./pages/Privacypolicy";
 import * as process from "process";
 global.process = process;
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: '/Video',
         element: <VideoPage />
+      },
+      {
+        path: '/privacy',
+        element: <Privacypolicy />
       }
     ]
   },

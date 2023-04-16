@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-white shadow dark:bg-gray-900">
@@ -14,22 +14,22 @@ const Footer = () => {
               className="h-8 mr-3"
               alt="Flowbite Logo"
             />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white" >
+              Derma
             </span>
           </a>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
-              <a href="#" className="mr-4 hover:underline md:mr-6 ">
-                About
+              <a href="https://derma-7t7tmc2o6-riyasharmma.vercel.app/" className="mr-4 hover:underline md:mr-6 ">
+                Home
               </a>
             </li>
             <li>
-              <a href="#" className="mr-4 hover:underline md:mr-6">
+              <Link to="/privacy" className="mr-4 hover:underline md:mr-6">
                 Privacy Policy
-              </a>
+              </Link>
             </li>
-            <li>
+            {/* <li>
               <a href="#" className="mr-4 hover:underline md:mr-6 ">
                 Licensing
               </a>
@@ -38,7 +38,7 @@ const Footer = () => {
               <a href="#" className="hover:underline">
                 Contact
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
@@ -101,7 +101,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Twitter page</span>
             </a>
-            <a
+            {/* <a
               href="#"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
@@ -118,8 +118,8 @@ const Footer = () => {
                 />
               </svg>
               <span className="sr-only">GitHub account</span>
-            </a>
-            <a
+            </a> */}
+            {/* <a
               href="#"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
@@ -136,7 +136,7 @@ const Footer = () => {
                 />
               </svg>
               <span className="sr-only">Dribbble account</span>
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
