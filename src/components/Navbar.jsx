@@ -86,7 +86,6 @@ export default function Navbar() {
                       <NavLink
                         key={item.name}
                         to={{ pathname: item.href }}
-                        target="_blank"
                         className={({ isActive, isPending }) =>
                           isPending
                             ? "pending"
