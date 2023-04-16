@@ -47,13 +47,13 @@ const cards = [
 
   {
     heading: "Paeddiatrics",
-    description: "Here are the biggest enterprise technology acquisitions of 2021 in reverse chronological order.",
+    description: "Pediatrics is the branch of medicine dealing with the health and medical care of infants, children, and adolescents from birth up to the age of 18",
     img: 'https://i.imgur.com/QA0cWjm.jpg',
     id: 'gynaecology9'
   },
   {
     heading: "Pathology",
-    description: "Here are the biggest enterprise technology acquisitions of 2021 in reverse chronological order.",
+    description: "Pathology is the medical discipline that provides diagnostic information to patients and clinicians. It impacts nearly all aspects of patient care, from diagnosing cancer to managing chronic diseases through accurate laboratory testing.",
     img: 'https://i.imgur.com/CzTvXJl.jpg',
     id: 'gynaecology10'
   },
