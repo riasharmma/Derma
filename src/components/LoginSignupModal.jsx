@@ -122,7 +122,7 @@ const LoginSignupModal = ({ isOpen, Fragment, closeModal }) => {
                       Continue with Google
                     </p>
                   </button>
-                  <button
+                  {/* <button
                     aria-label="Continue with github"
                     role="button"
                     className="focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-4"
@@ -142,7 +142,7 @@ const LoginSignupModal = ({ isOpen, Fragment, closeModal }) => {
                     <p className="text-base font-medium ml-4 text-gray-700">
                       Continue with Github
                     </p>
-                  </button>
+                  </button> */}
                   <div className="w-full flex items-center justify-between py-5">
                     <hr className="w-full bg-gray-400" />
                     <p className="text-base font-medium leading-4 px-2.5 text-gray-400">

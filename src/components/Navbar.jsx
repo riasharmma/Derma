@@ -10,7 +10,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const navigation = [
   { name: "Find Doctor", href: "find", current: false },
   { name: "Video Consultation", href: "consultation", current: false },
-  { name: "Medicine", href: "medicine", current: false },
+  { name: "Medicine", href: "https://medicinegfg.netlify.app/", current: false },
 ];
 
 function classNames(...classes) {
@@ -21,7 +21,7 @@ export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
 const [user] =  useAuthState(backendAuthService.auth) 
 
-  console.log(user);
+  //console.log(user);
   function closeModal() {
     setIsOpen(false);
   }

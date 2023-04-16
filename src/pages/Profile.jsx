@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import backendAuthService from "../firebase/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../firebase/firestore";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const [user] = useAuthState(backendAuthService.auth);
@@ -13,7 +14,16 @@ export const Profile = () => {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
   );
+  const navigate = useNavigate();
   
+  const handleSignOut = async () => {
+    try {
+      await backendAuthService.userSignOut();
+      navigate("/");
+    } catch (error) {
+      console.log(error)
+    }
+  };
   if (!user) {
     return null;
   }
@@ -45,11 +55,11 @@ export const Profile = () => {
               </div>{" "}
             </div>{" "}
             <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-              <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              <Link to="/consultation" className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                 {" "}
                 Book Appointment
-              </button>{" "}
-              <button className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              </Link>{" "}
+              <button onClick={handleSignOut} className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                 {" "}
                 Sign Out
               </button>{" "}
@@ -75,18 +85,18 @@ export const Profile = () => {
             <div className=""></div>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4 max-w-screen-lg mx-auto">{data?.docs.map((n,i) => <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold mb-2 text-gray-800">
-            Appointment #{i+1}
-            </h2>
-            <p className="text-gray-700 font-bold "></p>
-            <p className="text-gray-700 font-bold ">Patient- {n.data().patient}</p>
-            <p className="text-gray-700">{n.data().doctor} , {n.data().department}</p>
-            <p className="text-cyan-700">Time: {n.data().slot}</p>
-            <button class="bg-transparent mt-2 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-              Join
-            </button>
-          </div>)}
+        <div className="grid grid-cols-2 gap-4 max-w-screen-lg mx-auto">{data?.docs.map((n, i) => <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold mb-2 text-gray-800">
+            Appointment #{i + 1}
+          </h2>
+          <p className="text-gray-700 font-bold "></p>
+          <p className="text-gray-700 font-bold ">Patient- {n.data().patient}</p>
+          <p className="text-gray-700">{n.data().doctor} , {n.data().department}</p>
+          <p className="text-cyan-700">Time: {n.data().slot}</p>
+          <Link to="/video" class="bg-transparent mt-2 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Join
+          </Link>
+        </div>)}
         </div>
       </div>
     </div>
