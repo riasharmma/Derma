@@ -80,7 +80,7 @@ export default function Navbar() {
                       href="https://example.com/"
                       className="text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                     >
-                      Find Doctorssss
+                      Find Doctors
                     </a>
                     {navigation.map((item) => (
                       <NavLink
@@ -216,7 +216,7 @@ export default function Navbar() {
                 href="https://example.com/"
                 className="text-indigo-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
               >
-                Find Doctorsssss
+                Find Doctors
               </a>
               {navigation.map((item) => (
                 <Disclosure.Button
